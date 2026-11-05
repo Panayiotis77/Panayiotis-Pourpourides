@@ -12,13 +12,20 @@
 <style>
 /* Layout: fixed identity column on the left (name, photo, contact), reading column on the right switched by tabs; stacks to one column on phones. */
 :root {
-  --bg: #f6f7f9;
+  --bg: #f3f5f8;
+  --band: #dfe8f1;
   --surface: #ffffff;
-  --ink: #18202c;
-  --muted: #5a6575;
-  --rule: #dde1e7;
-  --accent: #1f4e79;
-  --accent-soft: #e6eef6;
+  --ink: #16222f;
+  --muted: #566476;
+  --rule: #d9e0e8;
+  --accent: #1b5583;
+  --accent-soft: #e4edf5;
+  --copper: #b0602a;
+  --copper-soft: #f5e8de;
+  --panel: #133a56;
+  --panel-ink: #eef3f7;
+  --panel-muted: #a6bdd0;
+  --panel-rule: #2d5675;
   --ph-bg: #fff6d6;
   --ph-ink: #6b5200;
   --ph-line: #e0c65c;
@@ -36,15 +43,19 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #11161d; --surface: #171d26; --ink: #e4e8ee; --muted: #9aa5b4;
-    --rule: #2a3340; --accent: #8db8e3; --accent-soft: #1c2a3a;
+    --bg: #0f151c; --band: #142130; --surface: #151d27; --ink: #e3e8ee; --muted: #9aa6b5;
+    --rule: #26313e; --accent: #8fc0e6; --accent-soft: #1a2a3a;
+    --copper: #e39a62; --copper-soft: #2e2219;
+    --panel: #172b3d; --panel-ink: #e8eff5; --panel-muted: #9fb4c6; --panel-rule: #2c4359;
     --ph-bg: #33290a; --ph-ink: #f1d77a; --ph-line: #7a6420;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #11161d; --surface: #171d26; --ink: #e4e8ee; --muted: #9aa5b4;
-  --rule: #2a3340; --accent: #8db8e3; --accent-soft: #1c2a3a;
+  --bg: #0f151c; --band: #142130; --surface: #151d27; --ink: #e3e8ee; --muted: #9aa6b5;
+  --rule: #26313e; --accent: #8fc0e6; --accent-soft: #1a2a3a;
+  --copper: #e39a62; --copper-soft: #2e2219;
+  --panel: #172b3d; --panel-ink: #e8eff5; --panel-muted: #9fb4c6; --panel-rule: #2c4359;
   --ph-bg: #33290a; --ph-ink: #f1d77a; --ph-line: #7a6420;
   color-scheme: dark;
 }
@@ -54,7 +65,8 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--bg);
+  background: linear-gradient(180deg, var(--band) 0, var(--band) 128px, var(--bg) 128px);
+  background-color: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--step-0);
@@ -89,6 +101,11 @@ p { margin: 0; }
 
 /* Identity column */
 .id {
+  background: var(--panel);
+  color: var(--panel-ink);
+  padding: 28px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px -18px rgba(10, 30, 50, 0.6);
   position: sticky;
   top: calc(env(safe-area-inset-top, 0px) + 40px);
   display: grid;
@@ -98,9 +115,9 @@ p { margin: 0; }
   width: 160px;
   aspect-ratio: 3 / 4;
   max-width: 100%;
-  border-radius: 4px;
-  background: var(--accent-soft);
-  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--panel-rule);
+  border: 3px solid var(--panel-ink);
   display: grid;
   place-items: center;
   color: var(--muted);
@@ -111,11 +128,15 @@ p { margin: 0; }
 }
 .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .name { font-size: var(--step-3); letter-spacing: -0.01em; }
-.role { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
-.contact { display: grid; gap: 8px; font-size: 0.9rem; padding-top: 16px; border-top: 1px solid var(--rule); }
-.contact dt { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.id a { color: var(--panel-ink); }
+.id .name { color: var(--panel-ink); }
+.role { color: var(--panel-muted); font-size: 0.95rem; line-height: 1.5; }
+.contact { display: grid; gap: 8px; font-size: 0.9rem; padding-top: 16px; border-top: 1px solid var(--panel-rule); }
+.contact dt { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--panel-muted); }
 .contact dd { margin: 0 0 6px; overflow-wrap: anywhere; }
-.profiles { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.9rem; }
+.profiles { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; }
+.profiles a { text-decoration: none; padding: 4px 12px; border: 1px solid var(--panel-rule); border-radius: 999px; }
+.profiles a:hover { border-color: var(--panel-ink); }
 
 /* Tabs */
 .tabs {
@@ -136,10 +157,12 @@ p { margin: 0; }
   margin-bottom: -1px;
 }
 .tabs a:hover { color: var(--ink); }
-.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--copper); }
 
 .view { display: grid; gap: 48px; max-width: 68ch; }
-.view-title { font-size: var(--step-2); }
+.view-title { font-size: var(--step-3); color: var(--panel); }
+:root[data-theme="dark"] .view-title { color: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .view-title { color: var(--ink); } }
 section { display: grid; gap: 18px; }
 .section-head {
   font-family: var(--font-mono);
@@ -147,20 +170,21 @@ section { display: grid; gap: 18px; }
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--muted);
+  color: var(--copper);
   padding-bottom: 8px;
   border-bottom: 1px solid var(--rule);
 }
 .lede { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.55; }
 .prose { display: grid; gap: 14px; }
+.lede, .prose p, .justify { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
 
 .interests { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
-.interests li { font-size: 0.875rem; padding: 4px 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); }
+.interests li { font-size: 0.875rem; padding: 5px 14px; border-radius: 999px; background: var(--copper-soft); color: var(--ink); }
 
 /* News */
 .news { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .news li { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; }
-.date { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 2px; }
+.date { font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent); font-variant-numeric: tabular-nums; padding-top: 2px; }
 
 /* Papers */
 .papers { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
@@ -196,7 +220,7 @@ details[open] > summary::before { content: "\2212  "; }
 }
 .btn {
   display: inline-block; font-weight: 500; font-size: 0.9rem; text-decoration: none;
-  padding: 9px 16px; border-radius: 4px; background: var(--accent); color: var(--bg);
+  padding: 9px 18px; border-radius: 999px; background: var(--copper); color: var(--surface);
 }
 .btn:hover { opacity: 0.9; }
 
@@ -204,7 +228,7 @@ footer { grid-column: 1 / -1; color: var(--muted); font-size: var(--step--1); bo
 
 @media (max-width: 860px) {
   .shell { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 32px 56px; }
-  .id { position: static; grid-template-columns: 96px minmax(0, 1fr); gap: 16px 20px; align-items: center; }
+  .id { position: static; grid-template-columns: 96px minmax(0, 1fr); gap: 16px 20px; align-items: center; padding: 20px; }
   .portrait { width: 96px; }
   .name { font-size: 1.75rem; }
   .contact, .profiles { grid-column: 1 / -1; }
@@ -216,7 +240,7 @@ footer { grid-column: 1 / -1; color: var(--muted); font-size: var(--step--1); bo
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 .paper { grid-template-columns: 2.25rem minmax(0, 1fr); column-gap: 8px; }
 .paper > * { grid-column: 2; }
-.paper-num { grid-column: 1; grid-row: 1; font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.paper-num { grid-column: 1; grid-row: 1; font-family: var(--font-mono); font-size: var(--step--1); color: var(--copper); padding-top: 4px; font-variant-numeric: tabular-nums; }
 .paper-meta .journal { font-style: italic; color: var(--ink); }
 .plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .plain li { display: grid; gap: 2px; }
@@ -257,11 +281,9 @@ footer { grid-column: 1 / -1; color: var(--muted); font-size: var(--step--1); bo
     <!-- ---------- ABOUT ---------- -->
     <div class="view" id="view-about">
       <section>
-        <p class="lede">I am Associate Professor of Economics and Quantitative Analysis at Philips University in Nicosia. My research covers general equilibrium, business cycles, the macroeconomics of labour markets and the macroeconomics of cryptocurrencies.</p>
+        <p class="lede">I am Associate Professor of Economics and Quantitative Analysis at Philips University, Nicosia. I was previously Senior Lecturer and Lecturer of Economics at Cardiff University and Senior Researcher at the Central Bank of Cyprus, and I hold a Ph.D. in Economics from the University of Virginia.</p>
         <div class="prose">
-          <p>I previously served as Senior Lecturer and Lecturer of Economics at Cardiff University and as Senior Researcher in the Economic Research Department of the Central Bank of Cyprus. I received my Ph.D. in Economics from the University of Virginia in 2007.</p>
-          <p>I have published in international peer-reviewed journals, including the <em>Journal of Economic Dynamics and Control</em>, <em>Canadian Journal of Economics</em>, <em>Journal of International Financial Markets, Institutions &amp; Money</em>, <em>International Journal of Finance and Economics</em>, <em>Journal of Macroeconomics</em>, <em>B.E. Journal of Macroeconomics</em>, <em>Review of Development Economics</em>, <em>Empirical Economics</em>, <em>Frontiers in Blockchain</em> and <em>Macroeconomic Dynamics</em>. My recent research focuses on the long-term relationship between macroeconomic and financial fundamentals and cryptocurrency metrics, and on the role of scale effects in economic growth.</p>
-          <p>I have extensive teaching, doctoral supervision and academic leadership experience. At Cardiff University I taught and coordinated courses in macroeconomics, labour economics, mathematical economics, computational macroeconomics and time-series econometrics. I have supervised Ph.D. and MSc students who went on to academic, central banking, government and international research positions. I have also served as an external examiner for the University of Southampton and as an examiner on Ph.D. boards at Cardiff University. I am a Fellow of the Academy of Higher Education in the United Kingdom.</p>
+          <p>My research studies business cycles, labour markets and economic growth, and more recently the macroeconomics of cryptocurrencies. It has been published in journals including the <em>Journal of Economic Dynamics and Control</em>, the <em>Canadian Journal of Economics</em> and <em>Macroeconomic Dynamics</em>.</p>
         </div>
       </section>
 
@@ -403,33 +425,7 @@ footer { grid-column: 1 / -1; color: var(--muted); font-size: var(--step--1); bo
         <h3 class="section-head">University of Virginia</h3>
         <ul class="rows">
           <li class="row"><span class="date">2005–2006</span><div class="row-main"><span class="row-title">Intermediate Macroeconomics (Econ 302)</span><span class="row-sub">Undergraduate</span></div></li>
-          <li class="row"><span class="date">2002–2004</span><div class="row-main"><span class="row-title">Teaching Assistant</span></div></li>
         </ul>
-      </section>
-
-      <section>
-        <h3 class="section-head">Ph.D. supervision · Cardiff University</h3>
-        <p class="view-intro">Primary supervisor</p>
-        <ul class="rows">
-          <li class="row"><span class="date">2015</span><div class="row-main"><span class="row-title">Lucy Minford</span><span class="row-sub">The Macroeconomic Effects of UK Tax, Regulation and R&amp;D Subsidies: Testing Endogenous Growth Hypotheses in an Open Economy DSGE Model. First placement: Professor Roger Mansfield Post-Doctoral Research Fellowship, Swansea University (2017–2024); Lecturer of Economics, Cardiff Business School (2024–).</span></div></li>
-          <li class="row"><span class="date">2014</span><div class="row-main"><span class="row-title">Lorant Kaszab</span><span class="row-sub">Fiscal Policy at the Zero Lower Bound and in Macro-Finance Models at Normal Times. First placement: Central Bank of Hungary.</span></div></li>
-        </ul>
-        <p class="view-intro">Secondary supervisor</p>
-        <ul class="rows">
-          <li class="row"><span class="date">2021</span><div class="row-main"><span class="row-title">Xingchen Li</span><span class="row-sub">Optimal Monetary Policy with Imperfectly Competitive Markets and Occasionally Binding Constraints. First placement: National Development and Reform Commission, Institute of Academy of Macroeconomic Research, Beijing.</span></div></li>
-          <li class="row"><span class="date">2011</span><div class="row-main"><span class="row-title">Michael Hatcher</span><span class="row-sub">Should Central Banks Switch from Inflation to Price-Level Targeting? Quantifying the Benefits from Long-Term Price Stability. First placement: Wadham College, Oxford University (now Associate Professor, University of Southampton).</span></div></li>
-          <li class="row"><span class="date">2011</span><div class="row-main"><span class="row-title">Hao Hong</span><span class="row-sub">Money, the Liquidity Effect and the Business Cycle. First placement: The People's Bank of China.</span></div></li>
-          <li class="row"><span class="date">2010</span><div class="row-main"><span class="row-title">Jing Dang</span><span class="row-sub">Essays on Human Capital and Business Cycles. First placement: State Grid Corporation, Beijing.</span></div></li>
-        </ul>
-        <p class="view-intro">Visiting research scholar</p>
-        <ul class="rows">
-          <li class="row"><span class="date">2019–2020</span><div class="row-main"><span class="row-title">Abida Naurin</span><span class="row-sub">Pakistan Institute of Development Economics. Evaluation of causality tests in panel frameworks.</span></div></li>
-        </ul>
-      </section>
-
-      <section>
-        <h3 class="section-head">MSc dissertation supervision</h3>
-        <p>From 2008 to 2026 I supervised MSc dissertations in the International Economics, Banking &amp; Finance (IEBF) and Financial Economics (FE) programmes at Cardiff University, and coordinated the MSc Dissertation module (BST279) from 2016 to 2021.</p>
       </section>
     </div>
 
@@ -496,7 +492,7 @@ footer { grid-column: 1 / -1; color: var(--muted); font-size: var(--step--1); bo
 
       <section>
         <h3 class="section-head">Referee</h3>
-        <p class="inline-list">Journal of the European Economic Association · Journal of Economic Dynamics and Control (2) · Canadian Journal of Economics · Economic Inquiry · B.E. Journal of Macroeconomics · Economic Modelling · International Economic Journal · Virginia Social Science Journal · Contemporary Wales (University of Wales Press) · Economic Change and Restructuring · Bulletin of Economic Research (2) · Studies in Nonlinear Dynamics and Econometrics · Research in International Business and Finance · International Review of Financial Analysis · Open Economies Review (2) · Frontiers in Blockchain · International Review of Economics and Finance</p>
+        <p class="inline-list justify">Journal of the European Economic Association · Journal of Economic Dynamics and Control (2) · Canadian Journal of Economics · Economic Inquiry · B.E. Journal of Macroeconomics · Economic Modelling · International Economic Journal · Virginia Social Science Journal · Contemporary Wales (University of Wales Press) · Economic Change and Restructuring · Bulletin of Economic Research (2) · Studies in Nonlinear Dynamics and Econometrics · Research in International Business and Finance · International Review of Financial Analysis · Open Economies Review (2) · Frontiers in Blockchain · International Review of Economics and Finance</p>
       </section>
 
       <section>
