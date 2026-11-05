@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panayiotis M. Pourpourides</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Panayiotis M. Pourpourides, Associate Professor of Economics and Quantitative Analysis at Philips University: research, teaching and CV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: fixed identity column on the left (name, photo, contact), reading column on the right switched by tabs; stacks to one column on phones. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #18202c;
+  --muted: #5a6575;
+  --rule: #dde1e7;
+  --accent: #1f4e79;
+  --accent-soft: #e6eef6;
+  --ph-bg: #fff6d6;
+  --ph-ink: #6b5200;
+  --ph-line: #e0c65c;
+
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2.25rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11161d; --surface: #171d26; --ink: #e4e8ee; --muted: #9aa5b4;
+    --rule: #2a3340; --accent: #8db8e3; --accent-soft: #1c2a3a;
+    --ph-bg: #33290a; --ph-ink: #f1d77a; --ph-line: #7a6420;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11161d; --surface: #171d26; --ink: #e4e8ee; --muted: #9aa5b4;
+  --rule: #2a3340; --accent: #8db8e3; --accent-soft: #1c2a3a;
+  --ph-bg: #33290a; --ph-ink: #f1d77a; --ph-line: #7a6420;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; text-wrap: balance; margin: 0; line-height: 1.2; }
+p { margin: 0; }
+
+/* Placeholder text you still need to replace */
+.ph {
+  background: var(--ph-bg);
+  color: var(--ph-ink);
+  border-bottom: 1px dashed var(--ph-line);
+  padding: 0 0.2em;
+  border-radius: 2px;
+}
+
+.shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-block: 56px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 64px;
+  align-items: start;
+}
+
+/* Identity column */
+.id {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 40px);
+  display: grid;
+  gap: 20px;
+}
+.portrait {
+  width: 160px;
+  aspect-ratio: 3 / 4;
+  max-width: 100%;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  border: 1px solid var(--rule);
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-align: center;
+  overflow: hidden;
+}
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.name { font-size: var(--step-3); letter-spacing: -0.01em; }
+.role { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+.contact { display: grid; gap: 8px; font-size: 0.9rem; padding-top: 16px; border-top: 1px solid var(--rule); }
+.contact dt { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.contact dd { margin: 0 0 6px; overflow-wrap: anywhere; }
+.profiles { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.9rem; }
+
+/* Tabs */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+.tabs a {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 10px 0 12px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.tabs a:hover { color: var(--ink); }
+.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+.view { display: grid; gap: 48px; max-width: 68ch; }
+.view-title { font-size: var(--step-2); }
+section { display: grid; gap: 18px; }
+.section-head {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.lede { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.55; }
+.prose { display: grid; gap: 14px; }
+
+.interests { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.interests li { font-size: 0.875rem; padding: 4px 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); }
+
+/* News */
+.news { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.news li { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; }
+.date { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 2px; }
+
+/* Papers */
+.papers { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+.paper { display: grid; gap: 6px; }
+.paper-title { font-size: var(--step-1); font-weight: 500; }
+.paper-title a { color: var(--ink); text-decoration: none; }
+.paper-title a:hover { color: var(--accent); text-decoration: underline; }
+.paper-meta { color: var(--muted); font-size: 0.925rem; }
+.paper-meta em { color: var(--ink); }
+.paper-links { display: flex; flex-wrap: wrap; gap: 4px 16px; font-family: var(--font-mono); font-size: 0.78rem; align-items: center; }
+details > summary { cursor: pointer; color: var(--accent); list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary::before { content: "+ "; }
+details[open] > summary::before { content: "\2212  "; }
+.abstract { margin-top: 8px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; font-family: var(--font-body); font-size: 0.9rem; line-height: 1.6; color: var(--ink); }
+.status { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 3px; background: var(--accent-soft); color: var(--accent); }
+
+/* Timeline rows (CV, teaching) */
+.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.row { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 20px; }
+.row-main { display: grid; gap: 2px; }
+.row-title { font-weight: 600; }
+.row-sub { color: var(--muted); font-size: 0.925rem; }
+
+.course { display: grid; gap: 6px; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+.course:first-child { padding-top: 0; }
+.course-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
+.course-code { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+
+.cv-download {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
+  padding: 18px 20px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
+}
+.btn {
+  display: inline-block; font-weight: 500; font-size: 0.9rem; text-decoration: none;
+  padding: 9px 16px; border-radius: 4px; background: var(--accent); color: var(--bg);
+}
+.btn:hover { opacity: 0.9; }
+
+footer { grid-column: 1 / -1; color: var(--muted); font-size: var(--step--1); border-top: 1px solid var(--rule); padding-top: 20px; }
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 32px 56px; }
+  .id { position: static; grid-template-columns: 96px minmax(0, 1fr); gap: 16px 20px; align-items: center; }
+  .portrait { width: 96px; }
+  .name { font-size: 1.75rem; }
+  .contact, .profiles { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .news li { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+.paper { grid-template-columns: 2.25rem minmax(0, 1fr); column-gap: 8px; }
+.paper > * { grid-column: 2; }
+.paper-num { grid-column: 1; grid-row: 1; font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.paper-meta .journal { font-style: italic; color: var(--ink); }
+.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.plain li { display: grid; gap: 2px; }
+.inline-list { color: var(--ink); font-size: 0.95rem; line-height: 1.7; }
+.view-intro { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ============ IDENTITY COLUMN ============ -->
+  <aside class="id">
+    <div class="portrait"><img src="photo.jpg" alt="Panayiotis M. Pourpourides" width="600" height="800"></div>
+    <div>
+      <h1 class="name">Panayiotis M. Pourpourides</h1>
+      <p class="role">Associate Professor of Economics and Quantitative Analysis<br><a href="https://philipsuni.ac.cy">Philips University</a></p>
+    </div>
+    <dl class="contact">
+      <div><dt>Email</dt><dd><a href="mailto:PourpouridesP@Philipsuni.ac.cy">PourpouridesP@Philipsuni.ac.cy</a></dd></div>
+      <div><dt>Address</dt><dd>4-6 Lamias Street<br>2001 Nicosia, Cyprus</dd></div>
+    </dl>
+    <div class="profiles">
+      <a href="https://ideas.repec.org/e/ppo163.html">RePEc / IDEAS</a>
+      <a href="https://orcid.org/0000-0002-2986-4094">ORCID</a>
+      <a href="cv.pdf">CV (PDF)</a>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN COLUMN ============ -->
+  <main>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#about" data-view="about">About</a>
+      <a href="#research" data-view="research">Research</a>
+      <a href="#teaching" data-view="teaching">Teaching</a>
+      <a href="#cv" data-view="cv">CV</a>
+    </nav>
+
+    <!-- ---------- ABOUT ---------- -->
+    <div class="view" id="view-about">
+      <section>
+        <p class="lede">I am Associate Professor of Economics and Quantitative Analysis at Philips University in Nicosia. My research covers general equilibrium, business cycles, the macroeconomics of labour markets and the macroeconomics of cryptocurrencies.</p>
+        <div class="prose">
+          <p>I previously served as Senior Lecturer and Lecturer of Economics at Cardiff University and as Senior Researcher in the Economic Research Department of the Central Bank of Cyprus. I received my Ph.D. in Economics from the University of Virginia in 2007.</p>
+          <p>I have published in international peer-reviewed journals, including the <em>Journal of Economic Dynamics and Control</em>, <em>Canadian Journal of Economics</em>, <em>Journal of International Financial Markets, Institutions &amp; Money</em>, <em>International Journal of Finance and Economics</em>, <em>Journal of Macroeconomics</em>, <em>B.E. Journal of Macroeconomics</em>, <em>Review of Development Economics</em>, <em>Empirical Economics</em>, <em>Frontiers in Blockchain</em> and <em>Macroeconomic Dynamics</em>. My recent research focuses on the long-term relationship between macroeconomic and financial fundamentals and cryptocurrency metrics, and on the role of scale effects in economic growth.</p>
+          <p>I have extensive teaching, doctoral supervision and academic leadership experience. At Cardiff University I taught and coordinated courses in macroeconomics, labour economics, mathematical economics, computational macroeconomics and time-series econometrics. I have supervised Ph.D. and MSc students who went on to academic, central banking, government and international research positions. I have also served as an external examiner for the University of Southampton and as an examiner on Ph.D. boards at Cardiff University. I am a Fellow of the Academy of Higher Education in the United Kingdom.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-head">Fields of interest</h2>
+        <ul class="interests">
+          <li>General Equilibrium</li>
+          <li>Business Cycle Theory</li>
+          <li>Macroeconomics of Labour Markets</li>
+          <li>Macroeconomics of Cryptocurrencies</li>
+          <li>Applied Time Series Econometrics</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-head">Recent</h2>
+        <ul class="news">
+          <li><span class="date">Sep 2026</span><span>Joined Philips University as Associate Professor of Economics and Quantitative Analysis.</span></li>
+          <li><span class="date">2026</span><span>“New Results and a Model of Scale Effects on Growth” (with Kul Luintel) published in <em>Macroeconomic Dynamics</em>.</span></li>
+          <li><span class="date">2025</span><span>“Long-Term Nexus of Macroeconomic and Financial Fundamentals with Cryptocurrencies” published in <em>Frontiers in Blockchain</em>.</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- ---------- RESEARCH ---------- -->
+    <div class="view" id="view-research" hidden>
+      <h2 class="view-title">Research</h2>
+
+      <section>
+        <h3 class="section-head">Refereed publications</h3>
+        <ol class="papers">
+          <li class="paper">
+            <span class="paper-num">[11]</span>
+            <p class="paper-title"><a href="https://orca.cardiff.ac.uk/id/eprint/183436/">New Results and a Model of Scale Effects on Growth</a></p>
+            <p class="paper-meta">with Kul Luintel · <span class="journal">Macroeconomic Dynamics</span>, Volume 30, 2026</p>
+            <div class="paper-links"><a href="https://ideas.repec.org/a/cup/macdyn/v30y2026ip-_8.html">Journal record</a><a href="https://orca.cardiff.ac.uk/id/eprint/183436/9/new-results-and-a-model-of-scale-effects-on-growth.pdf">Open-access PDF</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[10]</span>
+            <p class="paper-title"><a href="https://doi.org/10.3389/fbloc.2025.1550720">Long-Term Nexus of Macroeconomic and Financial Fundamentals with Cryptocurrencies</a></p>
+            <p class="paper-meta"><span class="journal">Frontiers in Blockchain</span>, Volume 8, 2025</p>
+            <div class="paper-links"><a href="https://doi.org/10.3389/fbloc.2025.1550720">Journal (open access)</a><a href="https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2025.1550720/pdf">PDF</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[9]</span>
+            <p class="paper-title"><a href="https://doi.org/10.1002/ijfe.3160">Exchange Rate Risk and Deviations from Purchasing Power Parity</a></p>
+            <p class="paper-meta">with Michael Arghyrou and Wenna Lu · <span class="journal">International Journal of Finance and Economics</span>, 2025</p>
+            <div class="paper-links"><a href="https://doi.org/10.1002/ijfe.3160">Journal</a><a href="https://orca.cardiff.ac.uk/id/eprint/176925">Open-access version</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[8]</span>
+            <p class="paper-title"><a href="https://doi.org/10.1007/s00181-022-02345-y">On the Causality Between Household and Government Spending on Education: Evidence from a Panel of 40 Countries</a></p>
+            <p class="paper-meta">with Abida Naurin · <span class="journal">Empirical Economics</span> 65, 2023, 567–585</p>
+            <div class="paper-links"><a href="https://doi.org/10.1007/s00181-022-02345-y">Journal</a><a href="https://orca.cardiff.ac.uk/154702/8/s00181-022-02345-y.pdf">Open-access PDF</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[7]</span>
+            <p class="paper-title"><a href="https://doi.org/10.1111/rode.12952">Does the Impact of Private Education on Growth Differ at Different Levels of Credit Market Development?</a></p>
+            <p class="paper-meta">with Michael Hatcher · <span class="journal">Review of Development Economics</span> 27(1), 2023, 291–322</p>
+            <div class="paper-links"><a href="https://doi.org/10.1111/rode.12952">Journal (open access)</a><a href="https://orca.cardiff.ac.uk/id/eprint/152830/8/rode.12952.pdf">PDF</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[6]</span>
+            <p class="paper-title"><a href="https://doi.org/10.1515/bejm-2017-0047">On the Cyclicality of Real Wages and Wage Differentials</a></p>
+            <p class="paper-meta">with Chris Otrok · <span class="journal">B.E. Journal of Macroeconomics: Advances</span> 19(1), 2019, 20</p>
+            <div class="paper-links"><a href="https://doi.org/10.1515/bejm-2017-0047">Journal</a><a href="https://orca.cardiff.ac.uk/id/eprint/103758/">Open-access version</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[5]</span>
+            <p class="paper-title"><a href="https://doi.org/10.1016/j.jmacro.2016.09.002">On Imperfect Competition with Occasionally Binding Cash-in-Advance Constraints</a></p>
+            <p class="paper-meta">with Huw Dixon · <span class="journal">Journal of Macroeconomics</span>, Volume 50, 2016, 72–85</p>
+            <div class="paper-links"><a href="https://doi.org/10.1016/j.jmacro.2016.09.002">Journal</a><a href="https://orca.cardiff.ac.uk/94674/1/IMCOMP1.pdf">Author version (PDF)</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[4]</span>
+            <p class="paper-title"><a href="https://doi.org/10.1016/j.intfin.2015.07.002">Inflation Announcements and Asymmetric Exchange Rate Responses</a></p>
+            <p class="paper-meta">with Michael Arghyrou · <span class="journal">Journal of International Financial Markets, Institutions &amp; Money</span>, Volume 40, 2016, 80–84</p>
+            <div class="paper-links"><a href="https://doi.org/10.1016/j.intfin.2015.07.002">Journal</a><a href="https://orca.cardiff.ac.uk/id/eprint/76969/1/Arghyrou%20and%20Pourpourides%202015.pdf">Author version (PDF)</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[3]</span>
+            <p class="paper-title"><a href="https://doi.org/10.1016/j.jedc.2014.07.006">R&amp;D and Aggregate Fluctuations</a></p>
+            <p class="paper-meta">with Erhan Artuç · <span class="journal">Journal of Economic Dynamics and Control</span>, Volume 47, 2014, 54–71</p>
+            <div class="paper-links"><a href="https://doi.org/10.1016/j.jedc.2014.07.006">Journal</a><a href="https://orca.cardiff.ac.uk/65678/1/RD_Fluctuations.pdf">Author version (PDF)</a><a href="https://orca.cardiff.ac.uk/65678/8/POURPOURIDES%20RD_Fluctuations_Appendix.pdf">Appendix</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[2]</span>
+            <p class="paper-title"><a href="https://doi.org/10.1111/j.1540-5982.2011.01659.x">Risk Aversion, Exchange Rate Uncertainty and the Law of One Price: Insights from the Market for Online Air-Travel Tickets</a></p>
+            <p class="paper-meta">with Michael Arghyrou and Andros Gregoriou · <span class="journal">Canadian Journal of Economics</span> 44(3), 2011, 880–906</p>
+            <div class="paper-links"><a href="https://doi.org/10.1111/j.1540-5982.2011.01659.x">Journal</a><a href="https://orca.cardiff.ac.uk/77815/1/e2009_2.pdf">Working paper (PDF)</a></div>
+          </li>
+          <li class="paper">
+            <span class="paper-num">[1]</span>
+            <p class="paper-title"><a href="https://doi.org/10.1016/j.jedc.2010.11.009">Implicit Contracts and the Cyclicality of the Skill-Premium</a></p>
+            <p class="paper-meta"><span class="journal">Journal of Economic Dynamics and Control</span>, Volume 35, 2011, 963–979</p>
+            <div class="paper-links"><a href="https://doi.org/10.1016/j.jedc.2010.11.009">Journal</a><a href="https://orca.cardiff.ac.uk/77768/1/e2007_19.pdf">Working paper (PDF)</a></div>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h3 class="section-head">Work in progress</h3>
+        <ul class="plain">
+          <li><span class="row-title">Decentralized Finance</span><span class="row-sub">Textbook</span></li>
+          <li><span class="row-title">Estimating the Returns of R&amp;D</span><span class="row-sub">with Kul Luintel</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- ---------- TEACHING ---------- -->
+    <div class="view" id="view-teaching" hidden>
+      <h2 class="view-title">Teaching</h2>
+
+      <section>
+        <h3 class="section-head">Current · Philips University</h3>
+        <div>
+          <article class="course">
+            <div class="course-head"><span class="row-title">Economics I: Microeconomics</span><span class="course-code">Undergraduate, year 1</span></div>
+          </article>
+          <article class="course">
+            <div class="course-head"><span class="row-title">Corporate Governance and Ethics</span><span class="course-code">MBA programme</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="section-head">Cardiff University</h3>
+        <ul class="rows">
+          <li class="row"><span class="date">2007–2026</span><div class="row-main"><span class="row-title">Advanced Labour Economics: macroeconomics of labour markets</span><span class="row-sub">Module leader · MRes Economics (Ph.D. programme, year 2)</span></div></li>
+          <li class="row"><span class="date">2013–2026</span><div class="row-main"><span class="row-title">Labour Economics</span><span class="row-sub">Module leader · Undergraduate, year 3</span></div></li>
+          <li class="row"><span class="date">2009–2021, 2024–2025</span><div class="row-main"><span class="row-title">Mathematical Economics</span><span class="row-sub">Module leader · MSc Economics (Ph.D. programme, year 1)</span></div></li>
+          <li class="row"><span class="date">2024</span><div class="row-main"><span class="row-title">Macroeconomics</span><span class="row-sub">Undergraduate, year 1</span></div></li>
+          <li class="row"><span class="date">2011</span><div class="row-main"><span class="row-title">Business Applications (Time Series Econometrics)</span><span class="row-sub">Undergraduate</span></div></li>
+          <li class="row"><span class="date">2009</span><div class="row-main"><span class="row-title">Computational Macroeconomics</span><span class="row-sub">Module leader · Ph.D. programme</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">University of Virginia</h3>
+        <ul class="rows">
+          <li class="row"><span class="date">2005–2006</span><div class="row-main"><span class="row-title">Intermediate Macroeconomics (Econ 302)</span><span class="row-sub">Undergraduate</span></div></li>
+          <li class="row"><span class="date">2002–2004</span><div class="row-main"><span class="row-title">Teaching Assistant</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">Ph.D. supervision · Cardiff University</h3>
+        <p class="view-intro">Primary supervisor</p>
+        <ul class="rows">
+          <li class="row"><span class="date">2015</span><div class="row-main"><span class="row-title">Lucy Minford</span><span class="row-sub">The Macroeconomic Effects of UK Tax, Regulation and R&amp;D Subsidies: Testing Endogenous Growth Hypotheses in an Open Economy DSGE Model. First placement: Professor Roger Mansfield Post-Doctoral Research Fellowship, Swansea University (2017–2024); Lecturer of Economics, Cardiff Business School (2024–).</span></div></li>
+          <li class="row"><span class="date">2014</span><div class="row-main"><span class="row-title">Lorant Kaszab</span><span class="row-sub">Fiscal Policy at the Zero Lower Bound and in Macro-Finance Models at Normal Times. First placement: Central Bank of Hungary.</span></div></li>
+        </ul>
+        <p class="view-intro">Secondary supervisor</p>
+        <ul class="rows">
+          <li class="row"><span class="date">2021</span><div class="row-main"><span class="row-title">Xingchen Li</span><span class="row-sub">Optimal Monetary Policy with Imperfectly Competitive Markets and Occasionally Binding Constraints. First placement: National Development and Reform Commission, Institute of Academy of Macroeconomic Research, Beijing.</span></div></li>
+          <li class="row"><span class="date">2011</span><div class="row-main"><span class="row-title">Michael Hatcher</span><span class="row-sub">Should Central Banks Switch from Inflation to Price-Level Targeting? Quantifying the Benefits from Long-Term Price Stability. First placement: Wadham College, Oxford University (now Associate Professor, University of Southampton).</span></div></li>
+          <li class="row"><span class="date">2011</span><div class="row-main"><span class="row-title">Hao Hong</span><span class="row-sub">Money, the Liquidity Effect and the Business Cycle. First placement: The People's Bank of China.</span></div></li>
+          <li class="row"><span class="date">2010</span><div class="row-main"><span class="row-title">Jing Dang</span><span class="row-sub">Essays on Human Capital and Business Cycles. First placement: State Grid Corporation, Beijing.</span></div></li>
+        </ul>
+        <p class="view-intro">Visiting research scholar</p>
+        <ul class="rows">
+          <li class="row"><span class="date">2019–2020</span><div class="row-main"><span class="row-title">Abida Naurin</span><span class="row-sub">Pakistan Institute of Development Economics. Evaluation of causality tests in panel frameworks.</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">MSc dissertation supervision</h3>
+        <p>From 2008 to 2026 I supervised MSc dissertations in the International Economics, Banking &amp; Finance (IEBF) and Financial Economics (FE) programmes at Cardiff University, and coordinated the MSc Dissertation module (BST279) from 2016 to 2021.</p>
+      </section>
+    </div>
+
+    <!-- ---------- CV ---------- -->
+    <div class="view" id="view-cv" hidden>
+      <h2 class="view-title">Curriculum vitae</h2>
+
+      <div class="cv-download">
+        <span>Full CV as PDF<br><span class="row-sub">Updated November 2026</span></span>
+        <a class="btn" href="cv.pdf">Download CV</a>
+      </div>
+
+      <section>
+        <h3 class="section-head">Positions</h3>
+        <ul class="rows">
+          <li class="row"><span class="date">2026–present</span><div class="row-main"><span class="row-title">Associate Professor of Economics and Quantitative Analysis</span><span class="row-sub">Philips University</span></div></li>
+          <li class="row"><span class="date">2020–2026</span><div class="row-main"><span class="row-title">Senior Lecturer of Economics</span><span class="row-sub">Cardiff University</span></div></li>
+          <li class="row"><span class="date">2011–2012</span><div class="row-main"><span class="row-title">Senior Researcher, Economic Research Department</span><span class="row-sub">Central Bank of Cyprus</span></div></li>
+          <li class="row"><span class="date">2007–2020</span><div class="row-main"><span class="row-title">Lecturer of Economics</span><span class="row-sub">Cardiff University</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">Education</h3>
+        <ul class="rows">
+          <li class="row"><span class="date">2007</span><div class="row-main"><span class="row-title">Ph.D. Economics</span><span class="row-sub">University of Virginia. Dissertation: Essays on Wages and Wage Inequality over the Business Cycle. Supervisors: Professor Craig Burnside (chair), Professor Christopher Otrok.</span></div></li>
+          <li class="row"><span class="date">2003</span><div class="row-main"><span class="row-title">M.A. Economics</span><span class="row-sub">University of Virginia</span></div></li>
+          <li class="row"><span class="date">2001</span><div class="row-main"><span class="row-title">B.Sc. Economics</span><span class="row-sub">University of Cyprus</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">Awards</h3>
+        <ul class="rows">
+          <li class="row"><span class="date">2005–2006</span><div class="row-main"><span class="row-title">DuPont Fellowship</span><span class="row-sub">University of Virginia</span></div></li>
+          <li class="row"><span class="date">2004–2005</span><div class="row-main"><span class="row-title">Bankard Predoctoral Fellowship</span><span class="row-sub">Bankard Fund for Political Economy, University of Virginia</span></div></li>
+          <li class="row"><span class="date">2001</span><div class="row-main"><span class="row-title">Prize of Bank of Development</span><span class="row-sub">University of Cyprus</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">Examining</h3>
+        <ul class="rows">
+          <li class="row"><span class="date">2018–2021</span><div class="row-main"><span class="row-title">External Examiner, University of Southampton</span><span class="row-sub">Macroeconomics elements of the undergraduate and postgraduate programmes</span></div></li>
+          <li class="row"><span class="date">2011–2026</span><div class="row-main"><span class="row-title">Internal Ph.D. examiner, Cardiff University</span><span class="row-sub">Yue Jiang (2011), Kun Tian (2013), Ashley Benedict Nanton (2014), Zheyi Zhu (2017), Aigerim Rysbayeva (2021), Xueying Hu (2026)</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">Administrative responsibilities · Cardiff University</h3>
+        <ul class="rows">
+          <li class="row"><span class="date">2016–2021</span><div class="row-main"><span class="row-sub">Coordinator (module leader) of the MSc Dissertation module (BST279), MSc International Economics, Banking &amp; Finance and Financial Economics</span></div></li>
+          <li class="row"><span class="date">2017</span><div class="row-main"><span class="row-sub">Organiser of the student presentation event for the MSc IEBF and FE programmes (424 students)</span></div></li>
+          <li class="row"><span class="date">2015–</span><div class="row-main"><span class="row-sub">Member of the student-staff panel (MSc Economics, MRes Economics, Ph.D.)</span></div></li>
+          <li class="row"><span class="date">2014</span><div class="row-main"><span class="row-sub">Coordinator for Cardiff University at the QED (Quantitative Economics Doctorate) Conference, Bielefeld</span></div></li>
+          <li class="row"><span class="date">2013–2016</span><div class="row-main"><span class="row-sub">Member of the student-staff panel (undergraduates)</span></div></li>
+          <li class="row"><span class="date">2012–2015</span><div class="row-main"><span class="row-sub">Representative of Economics at the School's Education Committee (Learning and Teaching)</span></div></li>
+          <li class="row"><span class="date">2011</span><div class="row-main"><span class="row-sub">Recruiting team for a lecturer post in Economics, Royal Economic Society, City University London (with Akos Valentinyi)</span></div></li>
+          <li class="row"><span class="date">2010–2011</span><div class="row-main"><span class="row-sub">Director of internal workshops in economics</span></div></li>
+          <li class="row"><span class="date">2009–2011</span><div class="row-main"><span class="row-sub">Director of the Economics Seminar Series</span></div></li>
+          <li class="row"><span class="date">2008</span><div class="row-main"><span class="row-sub">Recruiting team for a lecturer post in Economics: American Economic Association meetings, New Orleans (with Max Gillman), and Royal Economic Society, UCL (with Kent Matthews)</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">Referee</h3>
+        <p class="inline-list">Journal of the European Economic Association · Journal of Economic Dynamics and Control (2) · Canadian Journal of Economics · Economic Inquiry · B.E. Journal of Macroeconomics · Economic Modelling · International Economic Journal · Virginia Social Science Journal · Contemporary Wales (University of Wales Press) · Economic Change and Restructuring · Bulletin of Economic Research (2) · Studies in Nonlinear Dynamics and Econometrics · Research in International Business and Finance · International Review of Financial Analysis · Open Economies Review (2) · Frontiers in Blockchain · International Review of Economics and Finance</p>
+      </section>
+
+      <section>
+        <h3 class="section-head">Book reviewer</h3>
+        <ul class="rows">
+          <li class="row"><span class="date">2016</span><div class="row-main"><span class="row-sub">Chapter reviewer: <em>Modern Labor Economics</em>, Routledge</span></div></li>
+          <li class="row"><span class="date">2012</span><div class="row-main"><span class="row-sub">Chapter reviewer: <em>The Cyprus Economy: Historical Review, Prospects, Challenges</em>, eds. Athanasios Orphanides and George Syrichas, Central Bank of Cyprus</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">Affiliations and other</h3>
+        <ul class="rows">
+          <li class="row"><span class="date">Fellow</span><div class="row-main"><span class="row-sub">Academy of Higher Education, United Kingdom</span></div></li>
+          <li class="row"><span class="date">Fellow</span><div class="row-main"><span class="row-sub">Euro Area Business Cycle Network (EABCN)</span></div></li>
+          <li class="row"><span class="date">Affiliated</span><div class="row-main"><span class="row-sub">Economic Research Forum, Koç University</span></div></li>
+          <li class="row"><span class="date">Member</span><div class="row-main"><span class="row-sub">Julian Hodge Institute of Applied Macroeconomics</span></div></li>
+          <li class="row"><span class="date">2022–2023</span><div class="row-main"><span class="row-sub">Research leave, Cardiff University: study of the economics of cryptocurrencies</span></div></li>
+          <li class="row"><span class="date">2008–2017</span><div class="row-main"><span class="row-sub">Panelist for MSc students' presentations (IEBF/FE), Cardiff University: 2008, 2009, 2010, 2016, 2017</span></div></li>
+          <li class="row"><span class="date">2005</span><div class="row-main"><span class="row-sub">Research Assistant for Professor Christopher Otrok and Professor John James, University of Virginia</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-head">References</h3>
+        <p>Available upon request.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>© 2026 Panayiotis M. Pourpourides · Philips University, Nicosia</footer>
+</div>
+<script>
+(function () {
+  var views = ["about", "research", "teaching", "cv"];
+  function show() {
+    var name = (location.hash || "").replace("#", "");
+    if (views.indexOf(name) === -1) name = "about";
+    views.forEach(function (v) {
+      document.getElementById("view-" + v).hidden = v !== name;
+    });
+    document.querySelectorAll(".tabs a").forEach(function (a) {
+      if (a.dataset.view === name) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+  }
+  window.addEventListener("hashchange", function () { show(); window.scrollTo(0, 0); });
+  show();
+})();
+</script>
+</body>
+</html>
